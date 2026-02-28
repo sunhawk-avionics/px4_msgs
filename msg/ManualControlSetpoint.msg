@@ -1,5 +1,3 @@
-uint32 MESSAGE_VERSION = 0
-
 uint64 timestamp                        # time since system start (microseconds)
 uint64 timestamp_sample                 # the timestamp of the raw data (microseconds)
 
@@ -7,12 +5,12 @@ bool valid
 
 uint8 SOURCE_UNKNOWN   = 0
 uint8 SOURCE_RC        = 1		# radio control (input_rc)
-uint8 SOURCE_MAVLINK_0 = 2		# mavlink instance 0
-uint8 SOURCE_MAVLINK_1 = 3		# mavlink instance 1
-uint8 SOURCE_MAVLINK_2 = 4		# mavlink instance 2
-uint8 SOURCE_MAVLINK_3 = 5		# mavlink instance 3
-uint8 SOURCE_MAVLINK_4 = 6		# mavlink instance 4
-uint8 SOURCE_MAVLINK_5 = 7		# mavlink instance 5
+uint8 SOURCE_RC2       = 2		# radio control (input_rc2)
+uint8 SOURCE_RC3       = 3		# radio control (input_rc3)
+uint8 SOURCE_MAVLINK_0 = 4		# mavlink instance 0
+uint8 SOURCE_MAVLINK_1 = 5		# mavlink instance 1
+uint8 SOURCE_MAVLINK_2 = 6		# mavlink instance 2
+uint8 SOURCE_MAVLINK_3 = 7		# mavlink instance 3
 
 uint8 data_source
 
@@ -40,6 +38,14 @@ float32 aux6
 bool sticks_moving
 
 uint16 buttons		# From uint16 buttons field of Mavlink manual_control message
+
+uint8 cnt # 可用遥控器个数
+bool regained_safe # 重连后检查安全
+uint8 thr_safe # 油门检查 0 安全 1 低于闭环油门 2 高于闭环油门 3 最低位
+uint8 flameout_safe # 熄火杆检查 0 安全 1 非熄火位 2 熄火位
+uint8 collective_safe # 总距杆检查 0 安全 1 最低位 2 中位
+uint8 mode_safe # 模式杆检查 0 安全 1 位置 2 任务
+uint8 drop_safe # 抛投杆检查 0 安全 1 抛投 2 收回
 
 # TOPICS manual_control_setpoint manual_control_input
 # DEPRECATED: float32 x
